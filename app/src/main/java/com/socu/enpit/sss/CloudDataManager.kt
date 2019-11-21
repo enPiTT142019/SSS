@@ -32,6 +32,19 @@ object CloudDataManager {
     fun setAccountUserName(name: String) {
         accountUserName = name
     }
+    fun setAccountUserNameDefault() {
+        accountUserName = "_everyone"
+    }
+    fun setAccountUserNameFromShopName(shopName: String): Boolean {
+        val findKads = listOf(KeyAndData(KEY_SHOP_NAME, shopName))
+        val ret = getStringData(CLASS_SHARE_SHOP_INFO, findKads, KEY_USER_NAME)
+        if (ret != null)
+        {
+            accountUserName = ret
+            return true
+        }
+        return false
+    }
     private fun getClassEachName(className: String): String {
         return accountUserName!! + className
     }
@@ -40,7 +53,7 @@ object CloudDataManager {
         query.addOrderByAscending(KEY_CREATE_DATE)
         try {
             return query.find()
-        } catch (e: NCMBException) {
+        } catch (e: Throwable) {
             // エラー処理
             e.printStackTrace()
         }

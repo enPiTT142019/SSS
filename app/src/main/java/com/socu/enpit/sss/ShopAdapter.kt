@@ -30,7 +30,6 @@ class ShopAdapter(
         notifyDataSetChanged()
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.shopName.text = mItems[position].shopName
 
