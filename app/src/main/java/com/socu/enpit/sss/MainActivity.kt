@@ -21,14 +21,13 @@ class MainActivity : AppCompatActivity() {
         //**************** APIキーの設定とSDKの初期化 **********************
         NCMB.initialize(this, "d33534c7daf258e354c67e100f9923e1be23c347779ef8379e7f8596271ccc29", "f0354f95aba607910c5cb18b8d74d8df858880316963c04ecb9d07f66aef05b2")
 
-        CloudDataManager.setAccountUserNameDefault()
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         recyclerView.addOnItemTouchListener(ShopItemTouchListener(this ,object : ShopItemTouchListener.ItemTouchListener {
             override fun onItemTouch(view: View, position: Int) {
                 val success = CloudDataManager.setAccountUserNameFromShopName(view.shopNameText.text.toString())
                 if (success) {
+                    // TODO - 遷移先のActivityを店舗情報のものに変える
                     val intent = Intent(applicationContext, RequestActivity::class.java)
                     startActivity(intent)
                 }
@@ -38,5 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         val shopList = CloudDataManager.getShopDataList()
         for (shop in shopList) adapter.addItem(shop)
+
+        requestButton.setOnClickListener {
+            CloudDataManager.setAccountUserNameDefault()
+            val intent = Intent(applicationContext, RequestActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
