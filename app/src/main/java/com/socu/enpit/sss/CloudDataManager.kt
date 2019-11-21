@@ -42,6 +42,7 @@ object CloudDataManager {
             return query.find()
         } catch (e: NCMBException) {
             // エラー処理
+            e.printStackTrace()
         }
         return ArrayList()
     }
@@ -167,4 +168,11 @@ object CloudDataManager {
 //        }
 //        return ret
 //    }
+
+    fun getShopDataList(): List<ShopData> {
+        val list = getStringDataList(CLASS_SHARE_SHOP_INFO)
+        val ret = arrayListOf<ShopData>()
+        for(data in list) ret.add(ShopData(data.getString(KEY_SHOP_NAME)))
+        return ret
+    }
 }

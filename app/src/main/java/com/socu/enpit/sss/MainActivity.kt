@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
-        // debug
-        adapter.addItem(ShopData("hello name"))
+        val shopList = CloudDataManager.getShopDataList()
+        for (shop in shopList) adapter.addItem(shop)
     }
 }
