@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemTouch(view: View, position: Int) {
                 val success = CloudDataManager.setAccountUserNameFromShopName(view.shopNameText.text.toString())
                 if (success) {
-                    // TODO - 遷移先のActivityを店舗情報のものに変える
-                    val intent = Intent(applicationContext, RequestActivity::class.java)
+                    val intent = Intent(applicationContext, ShopInformation::class.java)
                     startActivity(intent)
                 }
                 else Toast.makeText(applicationContext, "failed", Toast.LENGTH_SHORT).show()
