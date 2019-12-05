@@ -34,6 +34,19 @@ object CloudDataManager {
     fun setAccountUserName(name: String) {
         accountUserName = name
     }
+    fun setAccountUserNameDefault() {
+        accountUserName = "_everyone"
+    }
+    fun setAccountUserNameFromShopName(shopName: String): Boolean {
+        val findKads = listOf(KeyAndData(KEY_SHOP_NAME, shopName))
+        val ret = getStringData(CLASS_SHARE_SHOP_INFO, findKads, KEY_USER_NAME)
+        if (ret != null)
+        {
+            accountUserName = ret
+            return true
+        }
+        return false
+    }
     private fun getClassEachName(className: String): String {
         return accountUserName!! + className
     }
@@ -151,8 +164,7 @@ object CloudDataManager {
         val ret = arrayListOf<RequestData>()
         for(data in list) ret.add(RequestData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
         return ret
-    }
-//    fun addGroceryData(data: GroceryData) {
+    }//    fun addGroceryData(data: GroceryData) {
 //        val byteArrayStream = ByteArrayOutputStream()
 //        data.bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayStream)
 //        val dataByte = byteArrayStream.toByteArray()
@@ -177,8 +189,15 @@ object CloudDataManager {
 //            val file = NCMBFile(imageName)
 //            val dataFetch = file.fetch()
 //            val bitmap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
-//            ret.add(GroceryData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), imageName, bitmap, data.getString(KEY_MY_CREATE_DATE)))
+//            ret.add(GroceryData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), imageName, bitmap, data.getString(KEY_CREATE_DATE)))
 //        }
 //        return ret
 //    }
+
+    fun getShopDataList(): List<ShopData> {
+        val list = getStringDataList(CLASS_SHARE_SHOP_INFO)
+        val ret = arrayListOf<ShopData>()
+        for(data in list) ret.add(ShopData(data.getString(KEY_SHOP_NAME)))
+        return ret
+    }
 }
