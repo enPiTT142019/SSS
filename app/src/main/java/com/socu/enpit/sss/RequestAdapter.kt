@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.request_item.view.*
-import kotlinx.android.synthetic.main.shop_item.view.*
-import org.w3c.dom.Text
 
 class RequestAdapter(
     private val mItems:   ArrayList<RequestData>,
@@ -36,9 +34,6 @@ class RequestAdapter(
         holder.date.text = mItems[position].date
         holder.title.text = mItems[position].title
         holder.contents.text = mItems[position].contents
-
-        // reference: Y.A.M の 雑記帳: SimpleDateFormat ではなく android.text.format.DateFormat を使おう - http://bit.ly/2OybKLu
-        //holder.tvCreatedAt.text = DateFormat.format("yyyy/MM/dd kk:mm:ss", mItems[position].mCreatedAt).toString()
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {

@@ -1,10 +1,13 @@
 package com.socu.enpit.sss
 
 import android.os.Bundle
+import android.text.format.DateFormat
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_request.*
-import kotlinx.android.synthetic.main.activity_shop_information.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class RequestActivity : AppCompatActivity() {
@@ -32,7 +35,13 @@ class RequestActivity : AppCompatActivity() {
             val title = titleEditText.text.toString()
             val contents = contentsEditText.text.toString()
             if (title != "" && contents != "") {
-
+                val date = DateFormat.format("yyyy/MM/dd kk:mm:ss", Calendar.getInstance()).toString()
+                val data = RequestData(title, contents, date)
+                adapter.addItem(data)
+                CloudDataManager.addRequestData(data)
+                titleEditText.setText("")
+                contentsEditText.setText("")
+                Toast.makeText(this, "送信しました。", Toast.LENGTH_SHORT).show()
             }
         }
     }
