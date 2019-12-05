@@ -11,11 +11,13 @@ object CloudDataManager {
 
     // 店舗ごとに存在するクラス
     private const val CLASS_EACH_NEWS = "_News"
+    private const val CLASS_EACH_MENU = "_Menu"
     private const val CLASS_EACH_GROCERIES = "_Groceries"
     private const val CLASS_EACH_REQUEST = "_Request"
 
     // データの列
-    private const val KEY_CREATE_DATE: String = "createDate"
+    //private const val KEY_CREATE_DATE: String = "createDate" // ニフクラ側が勝手に作る時刻。もう使わないかも。
+    private const val KEY_MY_CREATE_DATE: String = "myCreateDate"
     private const val KEY_USER_NAME: String = "userName"
     private const val KEY_SHOP_NAME: String = "shopName"
     private const val KEY_TITLE: String = "title"
@@ -32,30 +34,16 @@ object CloudDataManager {
     fun setAccountUserName(name: String) {
         accountUserName = name
     }
-    fun setAccountUserNameDefault() {
-        accountUserName = "_everyone"
-    }
-    fun setAccountUserNameFromShopName(shopName: String): Boolean {
-        val findKads = listOf(KeyAndData(KEY_SHOP_NAME, shopName))
-        val ret = getStringData(CLASS_SHARE_SHOP_INFO, findKads, KEY_USER_NAME)
-        if (ret != null)
-        {
-            accountUserName = ret
-            return true
-        }
-        return false
-    }
     private fun getClassEachName(className: String): String {
         return accountUserName!! + className
     }
     private fun getStringDataList(className: String): List<NCMBObject> {
         val query = NCMBQuery<NCMBObject>(className)
-        query.addOrderByAscending(KEY_CREATE_DATE)
+        query.addOrderByAscending(KEY_MY_CREATE_DATE)
         try {
             return query.find()
-        } catch (e: Throwable) {
+        } catch (e: NCMBException) {
             // エラー処理
-            e.printStackTrace()
         }
         return ArrayList()
     }
@@ -129,7 +117,7 @@ object CloudDataManager {
         return accountUserName!!
     }
     fun addNewsData(data: NewsData) {
-        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents))
+        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
         val className = getClassEachName(CLASS_EACH_NEWS)
         addStringData(className, kads)
     }
@@ -137,11 +125,23 @@ object CloudDataManager {
         val className = getClassEachName(CLASS_EACH_NEWS)
         val list = getStringDataList(className)
         val ret = arrayListOf<NewsData>()
-        for(data in list) ret.add(NewsData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_CREATE_DATE)))
+        for(data in list) ret.add(NewsData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
+        return ret
+    }
+    fun addMenuData(data: MenuData) {
+        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
+        val className = getClassEachName(CLASS_EACH_MENU)
+        addStringData(className, kads)
+    }
+    fun getMenuDataList(): List<MenuData> {
+        val className = getClassEachName(CLASS_EACH_MENU)
+        val list = getStringDataList(className)
+        val ret = arrayListOf<MenuData>()
+        for(data in list) ret.add(MenuData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
         return ret
     }
     fun addRequestData(data: RequestData) {
-        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents))
+        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
         val className = getClassEachName(CLASS_EACH_REQUEST)
         addStringData(className, kads)
     }
@@ -149,7 +149,7 @@ object CloudDataManager {
         val className = getClassEachName(CLASS_EACH_REQUEST)
         val list = getStringDataList(className)
         val ret = arrayListOf<RequestData>()
-        for(data in list) ret.add(RequestData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_CREATE_DATE)))
+        for(data in list) ret.add(RequestData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
         return ret
     }
 //    fun addGroceryData(data: GroceryData) {
@@ -177,15 +177,8 @@ object CloudDataManager {
 //            val file = NCMBFile(imageName)
 //            val dataFetch = file.fetch()
 //            val bitmap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
-//            ret.add(GroceryData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), imageName, bitmap, data.getString(KEY_CREATE_DATE)))
+//            ret.add(GroceryData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), imageName, bitmap, data.getString(KEY_MY_CREATE_DATE)))
 //        }
 //        return ret
 //    }
-
-    fun getShopDataList(): List<ShopData> {
-        val list = getStringDataList(CLASS_SHARE_SHOP_INFO)
-        val ret = arrayListOf<ShopData>()
-        for(data in list) ret.add(ShopData(data.getString(KEY_SHOP_NAME)))
-        return ret
-    }
 }
