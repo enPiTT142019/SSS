@@ -27,6 +27,14 @@ class RequestActivity : AppCompatActivity() {
 
         // 戻るボタンを押したときの処理
         back_button.setOnClickListener{ finish() }
+
+        sendButton.setOnClickListener {
+            val title = titleEditText.text.toString()
+            val contents = contentsEditText.text.toString()
+            if (title != "" && contents != "") {
+
+            }
+        }
     }
 }
 
