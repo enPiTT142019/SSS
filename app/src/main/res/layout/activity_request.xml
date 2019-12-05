@@ -6,77 +6,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <Button
+        android:id="@+id/back_button"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        android:layout_height="wrap_content"
+        android:text="戻る" />
 
-    <LinearLayout
-        android:id="@+id/container"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/requestRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" >
-
-                <EditText
-                    android:id="@+id/et_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="タイトル"
-                    android:inputType="text"
-                    android:maxLines="1" />
-
-
-            </android.support.design.widget.TextInputLayout>
-
-            <ImageButton
-                android:id="@+id/bt_add_item"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_add_black_24dp"
-                android:background="#000f"
-                android:contentDescription="Add" />
-
-        </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0">
-
-            <EditText
-                android:id="@+id/comment_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="コメント"
-                android:inputType="text"
-                android:maxLines="8" />
-
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_items"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="9"
-            android:scrollbars="vertical"/>
-
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 </LinearLayout>
