@@ -8,8 +8,8 @@ import kotlinx.android.synthetic.main.activity_shop_information.*
 
 class ShopInformation : AppCompatActivity() {
 
-    private val nadapter = ShopInformationAdapter(ArrayList(), this)
-    private val madapter = ShopInformationAdapter(ArrayList(), this)
+    private val nadapter = ShopInformationNewsAdapter(ArrayList(), this)
+    private val madapter = ShopInformationMenuAdapter(ArrayList(), this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +17,13 @@ class ShopInformation : AppCompatActivity() {
 
         newsRecyclerView.layoutManager = LinearLayoutManager(this)
         newsRecyclerView.adapter = nadapter
+        menuRecyclerView.layoutManager = LinearLayoutManager(this)
         menuRecyclerView.adapter = madapter
 
         shopNameText.text = CloudDataManager.getShopName()
         val newsDataList = CloudDataManager.getNewsDataList()
         for (news in newsDataList) nadapter.addItem(news)
-        val menuDataList = CloudDataManager.getNewsDataList()
+        val menuDataList = CloudDataManager.getMenuDataList()
         for (menu in menuDataList) madapter.addItem(menu)
     }
 }
