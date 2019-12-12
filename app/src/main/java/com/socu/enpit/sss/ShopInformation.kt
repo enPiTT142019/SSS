@@ -21,6 +21,9 @@ class ShopInformation : AppCompatActivity() {
         menuRecyclerView.adapter = madapter
 
         shopNameText.text = CloudDataManager.getShopName()
+        val sImage = CloudDataManager.getShopImage()
+        shopImage.setImageBitmap(sImage)
+
         val newsDataList = CloudDataManager.getNewsDataList()
         for (news in newsDataList) nadapter.addItem(news)
         val menuDataList = CloudDataManager.getMenuDataList()
