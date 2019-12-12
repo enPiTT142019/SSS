@@ -3,6 +3,8 @@ package com.socu.enpit.sss
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,5 +44,25 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, RequestActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    // メニューを表示させる処理
+    // この関数をオーバーライドして「menu.xml」を指定することで表示される
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    // メニューを選択したときの動作をここに書く
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val itemId = item?.itemId
+        when (itemId) {
+            // メニューの「読み込みなおし」を押したとき
+            R.id.reload -> {
+                val shopList = CloudDataManager.getShopDataList()
+                for (shop in shopList) adapter.addItem(shop)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
