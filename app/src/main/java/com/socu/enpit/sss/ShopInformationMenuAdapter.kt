@@ -6,25 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.menu_item.view.*
 import kotlinx.android.synthetic.main.news_item.view.*
-import kotlinx.android.synthetic.main.shop_item.view.*
-import org.w3c.dom.Text
 
-class ShopInformationAdapter(
-    private val mItems:   ArrayList<NewsData>,
+class ShopInformationMenuAdapter(
+    private val mItems:   ArrayList<MenuData>,
     private val mContext: Context
-): RecyclerView.Adapter<ShopInformationAdapter.ViewHolder>() {
+): RecyclerView.Adapter<ShopInformationMenuAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = mItems.size
 
-    fun addItem(item: NewsData) {
+    fun addItem(item: MenuData) {
         mItems.add(item)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(mContext).inflate(
-            R.layout.news_item, parent, false))
+            R.layout.menu_item, parent, false
+        )
+    )
 
     private fun removeItem(position: Int) {
         mItems.removeAt(position)
@@ -38,9 +39,9 @@ class ShopInformationAdapter(
         holder.date.text = mItems[position].date
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val title: TextView = view.newsTitleText
-        val contents: TextView = view.newsContentsText
-        val date: TextView = view.newsDayText
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = view.menuTitleText
+        val contents: TextView = view.menuContentsText
+        val date: TextView = view.menuDayText
     }
 }
