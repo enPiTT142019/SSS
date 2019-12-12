@@ -55,8 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     // メニューを選択したときの動作をここに書く
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val itemId = item?.itemId
-        when (itemId) {
+        when (item?.itemId) {
             // メニューの「読み込みなおし」を押したとき
             R.id.reload -> {
                 val shopList = CloudDataManager.getShopDataList()
