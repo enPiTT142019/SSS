@@ -24,6 +24,13 @@ object CloudDataManager {
     private const val KEY_CONTENTS: String = "contents"
     private const val KEY_IMAGE_NAME: String = "imageName"
 
+    // 全店舗リクエスト用アカウント名
+    private const val DEFAULT_ACCOUNT_USER_NAME = "_everyone"
+
+    // 画像ファイル名
+    // お店画像。アカウント名の後ろにつける。
+    private const val IMAGE_NAME = "_ShopImage.png"
+
     private var accountUserName: String? = null
 
     private class KeyAndData constructor(_key: String, _data:String) {
@@ -35,7 +42,10 @@ object CloudDataManager {
         accountUserName = name
     }
     fun setAccountUserNameDefault() {
-        accountUserName = "_everyone"
+        accountUserName = DEFAULT_ACCOUNT_USER_NAME
+    }
+    fun getAccountUserNameDefault(): String {
+        return DEFAULT_ACCOUNT_USER_NAME
     }
     fun setAccountUserNameFromShopName(shopName: String): Boolean {
         val findKads = listOf(KeyAndData(KEY_SHOP_NAME, shopName))
@@ -128,6 +138,34 @@ object CloudDataManager {
         val kads = arrayListOf(findKads, insertKads).flatten()
         addStringData(CLASS_SHARE_SHOP_INFO, kads)
         return accountUserName!!
+    }
+    fun setShopImage(bmp: Bitmap) {
+        val byteArrayStream = ByteArrayOutputStream()
+        bmp.compress(Bitmap.CompressFormat.PNG, 0, byteArrayStream)
+        val dataByte = byteArrayStream.toByteArray()
+        val acl = NCMBAcl()
+        acl.publicReadAccess = true
+        acl.publicWriteAccess = true
+        val imageName = accountUserName!! + IMAGE_NAME
+        val file = NCMBFile(imageName, dataByte, acl)
+        file.saveInBackground { e ->
+            if (e != null) {
+                // 保存に失敗した場合の処理
+            } else {
+                // 保存に成功した場合の処理
+            }
+        }
+    }
+    fun getShopImage() : Bitmap? {
+        try {
+            val imageName = accountUserName!! + IMAGE_NAME
+            val file = NCMBFile(imageName)
+            val dataFetch = file.fetch()
+            return BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
+        } catch (e: NCMBException) {
+
+        }
+        return null
     }
     fun addNewsData(data: NewsData) {
         val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
