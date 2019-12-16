@@ -42,6 +42,8 @@ class RequestActivity : AppCompatActivity() {
                 titleEditText.setText("")
                 contentsEditText.setText("")
                 Toast.makeText(this, "送信しました。", Toast.LENGTH_SHORT).show()
+            }else if(title == "" && contents == ""){
+                Toast.makeText(this, "タイトルと内容を書き込んでください。", Toast.LENGTH_SHORT).show()
             }
         }
     }
