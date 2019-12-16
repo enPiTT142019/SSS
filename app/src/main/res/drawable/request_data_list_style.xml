@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+
+    <!-- 背景色 -->
+    <solid android:color="#ffffff" />
+
+
+    <!-- 枠線 width:線の幅、color:線の色 -->
+    <stroke
+        android:width="2dp"
+        android:color="#444444" />
+
+</shape>

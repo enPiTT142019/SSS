@@ -10,7 +10,11 @@
         android:id="@+id/back_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/request_button_style"
         android:text="戻る"
+
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +58,10 @@
         android:id="@+id/sendButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/request_sendbutton_style"
         android:text="送信"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
