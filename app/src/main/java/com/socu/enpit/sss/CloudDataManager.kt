@@ -182,7 +182,7 @@ object CloudDataManager {
         return ret
     }
     fun addMenuData(data: MenuData) {
-        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
+        val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents))
         val className = getClassEachName(CLASS_EACH_MENU)
         addStringData(className, kads)
     }
@@ -190,7 +190,7 @@ object CloudDataManager {
         val className = getClassEachName(CLASS_EACH_MENU)
         val list = getStringDataList(className)
         val ret = arrayListOf<MenuData>()
-        for(data in list) ret.add(MenuData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
+        for(data in list) ret.add(MenuData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS)))
         return ret
     }
     fun addRequestData(data: RequestData) {

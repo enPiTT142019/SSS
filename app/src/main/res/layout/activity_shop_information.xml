@@ -34,7 +34,7 @@
             <ImageView
                 android:id="@+id/shopImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="310dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -50,8 +50,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#CCCCCC">
+                android:layout_height="350dp"
+                android:background="@drawable/recycleview_menu_style">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -68,8 +68,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menuRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/recyclerview_style" />
+                android:layout_height="350dp"
+                android:layout_weight="0"
+                android:background="@drawable/recycleview_news_style" />
 
         </LinearLayout>
     </ScrollView>
