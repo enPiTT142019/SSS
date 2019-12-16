@@ -32,6 +32,11 @@ class ShopInformationNewsAdapter(
         notifyDataSetChanged()
     }
 
+    fun removeAllItems() {
+        nItems.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = nItems[position].title
         holder.contents.text = nItems[position].contents
