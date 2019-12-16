@@ -12,7 +12,6 @@ object CloudDataManager {
     // 店舗ごとに存在するクラス
     private const val CLASS_EACH_NEWS = "_News"
     private const val CLASS_EACH_MENU = "_Menu"
-    private const val CLASS_EACH_GROCERIES = "_Groceries"
     private const val CLASS_EACH_REQUEST = "_Request"
 
     // データの列
@@ -156,16 +155,20 @@ object CloudDataManager {
             }
         }
     }
-    fun getShopImage() : Bitmap? {
+    fun getShopImage(bkgroundTask:(bmp: Bitmap) -> Unit) {
         try {
             val imageName = accountUserName!! + IMAGE_NAME
             val file = NCMBFile(imageName)
             val dataFetch = file.fetch()
-            return BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
+            file.fetchInBackground { bytes, ncmbException ->
+                if (ncmbException == null)  {
+                    val bmp = BitmapFactory.decodeByteArray(bytes, 0, dataFetch.size)
+                    bkgroundTask(bmp)
+                }
+            }
         } catch (e: NCMBException) {
 
         }
-        return null
     }
     fun addNewsData(data: NewsData) {
         val kads = listOf(KeyAndData(KEY_TITLE, data.title), KeyAndData(KEY_CONTENTS, data.contents), KeyAndData(KEY_MY_CREATE_DATE, data.date))
@@ -202,7 +205,8 @@ object CloudDataManager {
         val ret = arrayListOf<RequestData>()
         for(data in list) ret.add(RequestData(data.getString(KEY_TITLE), data.getString(KEY_CONTENTS), data.getString(KEY_MY_CREATE_DATE)))
         return ret
-    }//    fun addGroceryData(data: GroceryData) {
+    }
+//        fun addGroceryData(data: GroceryData) {
 //        val byteArrayStream = ByteArrayOutputStream()
 //        data.bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayStream)
 //        val dataByte = byteArrayStream.toByteArray()
