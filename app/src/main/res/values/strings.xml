@@ -3,4 +3,5 @@
     <string name="app_long_name">Support Share System</string>
     <string name="write_request">要望を書き込む</string>
     <string name="shopName">店舗名：</string>
+    <string name="reload">読み込みなおす</string>
 </resources>
