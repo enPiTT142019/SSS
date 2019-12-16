@@ -159,10 +159,9 @@ object CloudDataManager {
         try {
             val imageName = accountUserName!! + IMAGE_NAME
             val file = NCMBFile(imageName)
-            val dataFetch = file.fetch()
             file.fetchInBackground { bytes, ncmbException ->
                 if (ncmbException == null)  {
-                    val bmp = BitmapFactory.decodeByteArray(bytes, 0, dataFetch.size)
+                    val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                     bkgroundTask(bmp)
                 }
             }
