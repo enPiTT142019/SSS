@@ -20,12 +20,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/shopNameText"
+            <Button
+                android:id="@+id/requestButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00BCD4"
-                android:text="TextView"
+                android:background="@drawable/request_button_style"
+                android:text="要望はこちらから"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="30sp"
@@ -69,7 +69,7 @@
                 android:id="@+id/menuRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#CCCCCC" />
+                android:background="@drawable/recyclerview_style" />
 
         </LinearLayout>
     </ScrollView>

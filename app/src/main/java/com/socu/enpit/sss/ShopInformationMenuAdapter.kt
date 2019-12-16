@@ -33,6 +33,11 @@ class ShopInformationMenuAdapter(
         notifyDataSetChanged()
     }
 
+    fun removeAllItems() {
+        mItems.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = mItems[position].title
         holder.contents.text = mItems[position].contents
