@@ -2,6 +2,8 @@ package com.socu.enpit.sss
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +48,26 @@ class RequestActivity : AppCompatActivity() {
                 Toast.makeText(this, "タイトルと内容を書き込んでください。", Toast.LENGTH_SHORT).show()
             }
         }
+
+    }
+    // メニューを表示させる処理
+    // この関数をオーバーライドして「menu.xml」を指定することで表示される
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    // メニューを選択したときの動作をここに書く
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            // メニューの「読み込みなおす」を押したとき
+            R.id.reload -> {
+                adapter.removeAllItems()
+                val requestDataList = CloudDataManager.getRequestDataList()
+                for (request in requestDataList) adapter.addItem(request)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

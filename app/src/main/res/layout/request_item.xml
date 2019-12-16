@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="日　　付："
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/requestDayText"
@@ -25,7 +26,7 @@
             android:layout_weight="100"
             android:text="TextView"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="タイトル："
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/requestTitleText"
@@ -49,7 +51,7 @@
             android:layout_weight="100"
             android:text="TextView"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,11 +63,12 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:maxLines="8"
             android:text="内　　容："
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/requestContentsText"
@@ -74,7 +77,8 @@
             android:layout_weight="100"
             android:maxLines="8"
             android:text="TextView"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView

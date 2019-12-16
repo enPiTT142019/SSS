@@ -20,6 +20,11 @@ class RequestAdapter(
         notifyDataSetChanged()
     }
 
+    fun removeAllItems() {
+        mItems.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(mContext).inflate(
             R.layout.request_item, parent, false))
