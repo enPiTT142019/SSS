@@ -20,6 +20,11 @@ class ShopAdapter(
         notifyDataSetChanged()
     }
 
+    fun removeAllItems() {
+        mItems.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         LayoutInflater.from(mContext).inflate(
         R.layout.shop_item, parent, false))
