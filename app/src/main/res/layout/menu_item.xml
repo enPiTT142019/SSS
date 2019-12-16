@@ -2,19 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/menuDayText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="TextView"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/menuTitleText"
@@ -24,7 +14,7 @@
         android:text="TextView"
         android:textAlignment="textStart"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -37,10 +27,16 @@
         android:id="@+id/menuContentsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="10dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CBD854"
+        android:textSize="5sp" />
 
 </LinearLayout>

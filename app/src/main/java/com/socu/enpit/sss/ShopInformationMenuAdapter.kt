@@ -41,12 +41,10 @@ class ShopInformationMenuAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = mItems[position].title
         holder.contents.text = mItems[position].contents
-        holder.date.text = mItems[position].date
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.menuTitleText
         val contents: TextView = view.menuContentsText
-        val date: TextView = view.menuDayText
     }
 }
